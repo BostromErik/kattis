@@ -1,31 +1,24 @@
 <?php
-//not done
     $namesArray = [];
-
-    $fp = fopen('test0.in', 'r');   
-    while( $name = fgets($fp) ){
+     
+    while( $name = fgets(STDIN) ){
         $name = trim($name);
-        
         if($name === '***') break;
         if(!array_key_exists($name, $namesArray)){
             $namesArray[$name] = 1;
         }else{
             $namesArray[$name]++;
         }
-        
     }
-    var_dump($namesArray);
+   
     $result = [];
     $maxValue = max($namesArray);
+    $occurences = 0;
     foreach($namesArray as $name => $value){
-        if($value === $maxValue){
-            $result = "Runoff!";
-            break;
-        }else{
-            $result = array_search($maxValue, $namesArray);
+        if( $maxValue === $value ){
+            $occurences++;
         }
     }
 
+    $result = $occurences > 1 ?  $result = "Runoff!" : array_search($maxValue, $namesArray);
     fprintf(STDOUT, "%s\n", $result);
-    
-    fclose($fp);
