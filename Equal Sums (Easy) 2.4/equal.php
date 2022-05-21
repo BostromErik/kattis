@@ -10,14 +10,7 @@
         $subset = 0;
         while($j < count($case))
         {
-            while($k < count($case))
-            {
-                $subset = $subset + ($case[$j] + $case[$j + $step]);
-                if($subset < $case[$j + $step])
-                {
-
-                }
-            }
+            
             
         }
         $i++;
