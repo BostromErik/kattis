@@ -6,7 +6,6 @@
         return intval($x);
     }, $numbers);
     $result = array();
-    var_dump($numbers);
     foreach($numbers as $num)
     {   
         if(array_key_exists($num, $result)){ 
@@ -15,10 +14,31 @@
             $result[$num] = 1;
         }
     }
+    $sortedArray = [];
+    $tempOccurence = 0;
+    $i = 0;
+    $tempResult = $result;
+    while(count($result) !== $i){
 
-    foreach($result as $singleNumber)
-    {
-
+        foreach($tempResult as $key => $numOccurence)
+        {   
+            if($numOccurence > $tempOccurence)
+            {
+                $tempOccurence = $numOccurence;
+                $tempKey = $key;
+            }
+        }
+        unset($tempResult[$tempKey]);
+        $sortedArray[$tempKey] = $tempOccurence;
+        $tempOccurence = 0;
+        $i++;
     }
-
-    print_r($result);
+    $i=0;
+    foreach($sortedArray as $key => $value)
+    {
+        while($i < $value){
+            fprintf(STDOUT, "%s ", $key);
+            $i++;
+        }
+        $i=0;    
+    }
